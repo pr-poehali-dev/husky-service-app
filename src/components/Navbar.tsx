@@ -7,99 +7,99 @@ interface NavbarProps {
   isLoggedIn: boolean;
 }
 
+const links = [
+  { id: "services", label: "Услуги" },
+  { id: "booking",  label: "Запись" },
+  { id: "contacts", label: "Контакты" },
+];
+
 export default function Navbar({ activePage, onNavigate, isLoggedIn }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const links = [
-    { id: "home", label: "Главная" },
-    { id: "services", label: "Услуги" },
-    { id: "booking", label: "Запись" },
-    { id: "contacts", label: "Контакты" },
-  ];
-
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-navy text-white shadow-lg">
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-        <button
-          onClick={() => onNavigate("home")}
-          className="flex items-center gap-2 font-black text-xl tracking-tight"
-        >
-          <span className="text-[hsl(var(--accent))]">●</span>
-          <span>ХАСКИ СЕРВИС</span>
+
+        {/* Logo */}
+        <button onClick={() => onNavigate("home")} className="flex items-center gap-2.5">
+          <div className="w-9 h-9 rounded-lg bg-orange-500 flex items-center justify-center font-display text-white text-xl leading-none">
+            Х
+          </div>
+          <div className="leading-tight">
+            <div className="font-display text-xl tracking-wider text-white">ХАСКИ СЕРВИС</div>
+            <div className="text-[10px] text-sky-brand opacity-80 tracking-widest uppercase -mt-0.5">Ремонт техники</div>
+          </div>
         </button>
 
-        <nav className="hidden md:flex items-center gap-8">
+        {/* Desktop nav */}
+        <nav className="hidden md:flex items-center gap-6">
           {links.map((link) => (
             <button
               key={link.id}
               onClick={() => onNavigate(link.id)}
-              className={`text-sm font-medium transition-colors ${
-                activePage === link.id
-                  ? "text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
+              className={`text-sm font-semibold transition-colors relative py-1 ${
+                activePage === link.id ? "text-sky-brand" : "text-white/80 hover:text-white"
               }`}
             >
               {link.label}
               {activePage === link.id && (
-                <div className="mt-0.5 h-px bg-[hsl(var(--accent))] rounded-full" />
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-500 rounded-full" />
               )}
             </button>
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        {/* Right */}
+        <div className="hidden md:flex items-center gap-3">
+          <a href="tel:+74950000000" className="flex items-center gap-1.5 text-sm text-white/80 hover:text-white transition-colors">
+            <Icon name="Phone" size={14} />
+            +7 (495) 000-00-00
+          </a>
           {isLoggedIn ? (
-            <button
-              onClick={() => onNavigate("cabinet")}
-              className={`hidden md:flex items-center gap-2 text-sm font-medium px-4 py-2 rounded border transition-all ${
-                activePage === "cabinet"
-                  ? "bg-foreground text-background border-foreground"
-                  : "border-border hover:border-foreground"
-              }`}
-            >
-              <Icon name="User" size={15} />
+            <button onClick={() => onNavigate("cabinet")} className="btn-orange text-sm py-2 px-4">
+              <Icon name="User" size={14} />
               Кабинет
             </button>
           ) : (
-            <button
-              onClick={() => onNavigate("login")}
-              className="hidden md:flex items-center gap-2 text-sm font-medium px-4 py-2 rounded border border-border hover:border-foreground transition-all"
-            >
-              Войти
+            <button onClick={() => onNavigate("booking")} className="btn-orange text-sm py-2 px-4">
+              <Icon name="CalendarPlus" size={14} />
+              Вызвать мастера
             </button>
           )}
-
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2"
-          >
-            <Icon name={mobileOpen ? "X" : "Menu"} size={20} />
-          </button>
         </div>
+
+        {/* Mobile burger */}
+        <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden p-2 text-white">
+          <Icon name={mobileOpen ? "X" : "Menu"} size={22} />
+        </button>
       </div>
 
+      {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-border bg-background animate-fade-in">
+        <div className="md:hidden border-t border-white/10 bg-navy animate-fade-in">
           <nav className="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-1">
             {links.map((link) => (
               <button
                 key={link.id}
                 onClick={() => { onNavigate(link.id); setMobileOpen(false); }}
-                className={`text-left px-3 py-2.5 rounded text-sm font-medium transition-colors ${
+                className={`text-left px-4 py-3 rounded-lg text-sm font-semibold transition-colors ${
                   activePage === link.id
-                    ? "bg-secondary text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "bg-white/10 text-sky-brand"
+                    : "text-white/80 hover:text-white hover:bg-white/5"
                 }`}
               >
                 {link.label}
               </button>
             ))}
-            <button
-              onClick={() => { onNavigate(isLoggedIn ? "cabinet" : "login"); setMobileOpen(false); }}
-              className="text-left px-3 py-2.5 rounded text-sm font-medium text-muted-foreground hover:text-foreground"
-            >
-              {isLoggedIn ? "Личный кабинет" : "Войти"}
-            </button>
+            <div className="pt-2 border-t border-white/10 mt-1">
+              <button
+                onClick={() => { onNavigate(isLoggedIn ? "cabinet" : "booking"); setMobileOpen(false); }}
+                className="btn-orange w-full text-sm py-3"
+              >
+                <Icon name="CalendarPlus" size={15} />
+                {isLoggedIn ? "Личный кабинет" : "Вызвать мастера"}
+              </button>
+            </div>
           </nav>
         </div>
       )}
