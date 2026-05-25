@@ -21,12 +21,12 @@ export default function LoginPage({ onLogin, onNavigate }: LoginPageProps) {
       <div className="w-full max-w-sm mx-auto px-4 animate-fade-in">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <div className="w-10 h-10 rounded-xl bg-black flex items-center justify-center relative overflow-hidden">
-              <span className="font-heading text-white text-xl">Х</span>
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-blue-brand" />
-            </div>
-            <span className="font-heading text-2xl tracking-wide text-black">ХАСКИ СЕРВИС</span>
+          <div className="inline-flex justify-center mb-3">
+            <img
+              src="https://cdn.poehali.dev/projects/98752a69-fc99-41c4-ae69-26c3cb674be9/bucket/0783289f-947e-412c-9f1b-1718928a91aa.jpg"
+              alt="Husky Service"
+              className="h-20 w-auto object-contain"
+            />
           </div>
           <p className="text-muted-foreground font-body text-sm">
             {mode === "login" ? "Войдите в личный кабинет" : "Создайте аккаунт бесплатно"}

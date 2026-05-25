@@ -204,8 +204,11 @@ export default function HomePage({ onNavigate }: HomePageProps) {
       <footer className="bg-black text-white border-t border-white/10">
         <div className="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded bg-white/10 flex items-center justify-center font-heading text-blue-brand text-base">Х</div>
-            <span className="font-heading text-base tracking-wide">ХАСКИ СЕРВИС</span>
+            <img
+              src="https://cdn.poehali.dev/projects/98752a69-fc99-41c4-ae69-26c3cb674be9/bucket/0783289f-947e-412c-9f1b-1718928a91aa.jpg"
+              alt="Husky Service"
+              className="h-10 w-auto object-contain brightness-0 invert"
+            />
           </div>
           <span className="text-white/40 font-body">© 2024 Все права защищены</span>
           <div className="flex gap-5 text-white/50">

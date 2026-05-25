@@ -22,15 +22,12 @@ export default function Navbar({ activePage, onNavigate, isLoggedIn, notificatio
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
 
         {/* Logo */}
-        <button onClick={() => onNavigate("home")} className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-lg bg-black flex items-center justify-center relative overflow-hidden">
-            <span className="font-heading text-white text-lg leading-none">Х</span>
-            <div className="absolute bottom-0 left-0 right-0 h-1 bg-blue-brand" />
-          </div>
-          <div className="leading-tight">
-            <div className="font-heading text-lg tracking-wide text-black leading-none">ХАСКИ СЕРВИС</div>
-            <div className="text-[10px] text-muted-foreground tracking-widest uppercase font-body">Ремонт бытовой техники</div>
-          </div>
+        <button onClick={() => onNavigate("home")} className="flex items-center gap-2">
+          <img
+            src="https://cdn.poehali.dev/projects/98752a69-fc99-41c4-ae69-26c3cb674be9/bucket/0783289f-947e-412c-9f1b-1718928a91aa.jpg"
+            alt="Husky Service"
+            className="h-10 w-auto object-contain"
+          />
         </button>
 
         {/* Desktop nav */}
